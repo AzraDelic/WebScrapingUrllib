@@ -1,0 +1,13 @@
+import re
+from urllib.request import urlopen
+
+url = "http://olympus.realpython.org/profiles"
+page = urlopen(url).read().decode("utf-8")
+ime = ""
+lista = []
+string = re.findall("<a.*?>.*?</a.*?>", page, re.IGNORECASE)
+for i in string:
+    ime = i
+    ime = re.sub("<.*?>", "", ime)
+    lista.append(ime)
+print(lista)
